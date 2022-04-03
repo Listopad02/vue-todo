@@ -19,6 +19,13 @@ export default {
   components: {
     TodoList, AddTodo
   },
+  mounted() {
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
+      .then(response => response.json())
+      .then(json => {
+        this.todos = json
+      })
+  },
   methods: {
     removeTodo(id) {
       this.todos = this.todos.filter(t => t.id !== id)
@@ -29,11 +36,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {id: 1, title: 'Buy some milk', completed: false},
-        {id: 2, title: 'Finish homework', completed: false},
-        {id: 3, title: 'Pay all taxes', completed: false}
-      ]
+      todos: []
     }
   }
 }
