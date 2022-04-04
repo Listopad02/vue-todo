@@ -1,13 +1,12 @@
 <template>
-  <div id="app">
-    <h1>Todo application</h1>
-    <div class="links">
-      <router-link to="/active">Active</router-link>
-      <router-link to="/completed">Completed</router-link>
-      <router-link to="/">All</router-link>
-    </div>
+  <div>
+    <h2>All tasks</h2>
+    <AddTodo
+      @add-todo="addTodo" />
     <hr>
-    <router-view />
+    <TodoList 
+      v-bind:todos="todos"
+      @remove-todo="removeTodo" />
   </div>
 </template>
 
@@ -42,22 +41,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-a:not(:first-child) {
-  margin-left: 20px;
-}
-a {
-  cursor: pointer;
-  color: #2c3e50;
-  text-decoration: none;
-}
-</style>

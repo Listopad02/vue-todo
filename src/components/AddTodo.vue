@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="onSubmit">
-        <input type="text" v-model="title">
-        <button type="submit">Create</button>
+        <input type="text" v-model="text">
+        <button type="submit">Add task</button>
     </form>
 </template>
 
@@ -9,19 +9,19 @@
 export default {
     data() {
         return {
-            title: ''
+            text: ''
         }
     },
     methods: {
         onSubmit() {
-            if (this.title.trim) {
+            if (this.text.trim) {
                 const newTodo = {
                     id: Date.now(),
-                    title: this.title,
-                    completed: false
+                    text: this.text,
+                    active: true
                 }
                 this.$emit('add-todo', newTodo)
-                this.title = ''
+                this.text = ''
             }
         }
     }
