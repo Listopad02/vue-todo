@@ -11,6 +11,38 @@
   </div>
 </template>
 
+<script>
+
+import TodoList from '@/components/TodoList.vue'
+import AddTodo from '@/components/AddTodo.vue'
+export default {
+  name: 'App',
+  components: {
+    TodoList, AddTodo
+  },
+  mounted() {
+    fetch('https://my-json-server.typicode.com/falk20/demo/todos')
+      .then(response => response.json())
+      .then(json => {
+        this.todos = json
+      })
+  },
+  methods: {
+    removeTodo(id) {
+      this.todos = this.todos.filter(t => t.id !== id)
+    },
+    addTodo(todo) {
+      this.todos.push(todo)
+    }
+  },
+  data() {
+    return {
+      todos: []
+    }
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
